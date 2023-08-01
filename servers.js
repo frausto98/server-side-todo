@@ -2,9 +2,10 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const apiRoutes = require('./route/apiRoutes')
 
 //set up the server
-const PORT = 3005;
+const PORT = process.env.PORT || 3005;
 const app = express();
 
 // the purpose of this code is so that express reads requested information in it's intended json object format.
@@ -17,6 +18,8 @@ app.use(express.urlencoded({extended: true}));
 // the purpose of this code is so that all the files within the folder are not changed when accessed on a server.
 // so, while we may post/create new todo items, we're not actually altering the files even though they're accessed through a server.
 app.use(express.static("public"));
+
+app.use('/api', apiRoutes)
 
 // here we tell express that any end point for localHost:3005 will direct us to the homepage.
 app.get(`/`, (req, res) => res.sendFile(path.join(__dirname, "./public/index.html")));
