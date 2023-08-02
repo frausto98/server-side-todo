@@ -25,7 +25,7 @@ app.use('/api', apiRoutes)
 app.get(`/`, (req, res) => res.sendFile(path.join(__dirname, "./public/index.html")));
 
 // here we tell express that the end point "/notes" will direct us to the notes html page.
-app.get("/notes", (req, res) => res.sendFile(path.join(__dirname, "./public/notes.html")));
+app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, "./public/notes.html")));
 
 // here we tell express to initiate the server on our designated port, specified at 3005.
 app.listen(PORT, () => console.log(`server is running on http://localhost:${PORT}`));
